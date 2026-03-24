@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#d95c7a">
   <meta name="description" content="Una carta pequeña, bonita y hecha con muchísimo amor.">
-      <title>Para el amor de mi vida</title>
+      <title>Para Danna</title>
   <style>
     :root {
       --rose: #d95c7a;
@@ -482,26 +482,23 @@
       <h1>Para Danna</h1>
       <p class="lead">
         Quise hacerte algo pequeño, pero especial. Un rincón bonito para recordarte,
-        dannita, lo mucho que significas para mí.
+        Danna, lo mucho que significas para mí.
       </p>
     </section>
 
     <section class="panel" aria-labelledby="mensaje-title">
       <h2 id="mensaje-title">Tu mensajito</h2>
-      <p>La preparé pensando en ti. Si quieres, puedes tocar el botón y abrir la carta.</p>
+      <p>La preparé pensando en ti. El mensajito ya aparece listo y la carta se abre con un toque.</p>
 
       <div class="stack">
-        <div>
-          <label for="name">Tu nombre</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="Danna">
-        </div>
-
         <div class="actions">
-          <button class="primary" id="show-message" type="button">Ver mensaje</button>
-          <button class="secondary" id="open-letter" type="button">Abrir carta</button>
+          <button class="primary" id="open-letter" type="button">Abrir carta</button>
         </div>
 
-        <div class="message-box" id="message-box" aria-live="polite"></div>
+        <div class="message-box is-visible" id="message-box" aria-live="polite">
+          <strong>Hola dannita 💖</strong>
+          Eres mi persona favorita y una de las cosas más bonitas que me han pasado. Gracias por hacerme tan feliz. ✨
+        </div>
       </div>
 
       <div class="details" aria-label="Pequeños recordatorios">
@@ -544,7 +541,7 @@ por tu sonrisa,
 por tu forma de ser
 y por hacer mis días más bonitos.
 
-Te amo muuuuuuuuuucho, mi amor.</p>
+Te amo muchísimo, mi amor.</p>
 
       <div class="letter-sign">Con muchísimo cariño, Diego.</div>
       <p class="helper">Toca afuera o el botón para cerrar.</p>
@@ -553,35 +550,9 @@ Te amo muuuuuuuuuucho, mi amor.</p>
   </div>
 
   <script>
-    const nameInput = document.getElementById("name");
-    const showMessageButton = document.getElementById("show-message");
     const openLetterButton = document.getElementById("open-letter");
-    const messageBox = document.getElementById("message-box");
     const overlay = document.getElementById("letter-overlay");
     const closeLetterButton = document.getElementById("close-letter");
-
-    const DEFAULT_NAME = "Danna";
-    const query = new URLSearchParams(window.location.search);
-    const presetName = (query.get("nombre") || DEFAULT_NAME).trim();
-
-    function normalizeName(value) {
-      return value.replace(/\s+/g, " ").trim();
-    }
-
-    function showMessage() {
-      const name = normalizeName(nameInput.value);
-
-      if (!name) {
-        messageBox.innerHTML = "<strong>Me falta algo...</strong>Escribe tu nombre para poder mostrarte tu mensaje. 💗";
-        messageBox.classList.add("is-visible");
-        nameInput.focus();
-        return;
-      }
-
-      nameInput.value = name;
-      messageBox.innerHTML = "<strong>Hola, " + name + " 💖</strong>Eres mi persona favorita y una de las cosas más bonitas que me han pasado. Gracias por tu amor incondicional. ✨";
-      messageBox.classList.add("is-visible");
-    }
 
     function openLetter() {
       overlay.classList.add("is-open");
@@ -596,16 +567,8 @@ Te amo muuuuuuuuuucho, mi amor.</p>
       document.body.style.overflow = "";
     }
 
-    showMessageButton.addEventListener("click", showMessage);
     openLetterButton.addEventListener("click", openLetter);
     closeLetterButton.addEventListener("click", closeLetter);
-
-    nameInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        showMessage();
-      }
-    });
 
     overlay.addEventListener("click", (event) => {
       if (event.target === overlay) {
@@ -619,8 +582,6 @@ Te amo muuuuuuuuuucho, mi amor.</p>
       }
     });
 
-    nameInput.value = presetName;
-    showMessage();
   </script>
 </body>
 </html>
